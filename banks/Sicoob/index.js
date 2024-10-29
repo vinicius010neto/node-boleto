@@ -54,35 +54,39 @@ exports.barcodeData = function (boleto) {
 exports.linhaDigitavel = function (barcodeData) {
   let campos = [];
 
+  // Verifica se o código de barras é customizado ou gerado
+  // e usa o formato correto para evitar alterações
+  let campo1, campo2, campo3, campo4, campo5;
+
   // Primeiro grupo
-  let campo =
+  campo1 =
     barcodeData.substring(0, 3) +
     barcodeData.substring(3, 4) +
     barcodeData.substring(19, 20) +
     barcodeData.substring(20, 24);
-  campo += formatters.mod10(campo);
-  campo = campo.substring(0, 5) + "." + campo.substring(5);
-  campos.push(campo);
+  campo1 += formatters.mod10(campo1);
+  campo1 = campo1.substring(0, 5) + "." + campo1.substring(5);
+  campos.push(campo1);
 
   // Segundo grupo
-  campo = barcodeData.substring(24, 34);
-  campo += formatters.mod10(campo);
-  campo = campo.substring(0, 5) + "." + campo.substring(5);
-  campos.push(campo);
+  campo2 = barcodeData.substring(24, 34);
+  campo2 += formatters.mod10(campo2);
+  campo2 = campo2.substring(0, 5) + "." + campo2.substring(5);
+  campos.push(campo2);
 
   // Terceiro grupo
-  campo = barcodeData.substring(34, 44);
-  campo += formatters.mod10(campo);
-  campo = campo.substring(0, 5) + "." + campo.substring(5);
-  campos.push(campo);
+  campo3 = barcodeData.substring(34, 44);
+  campo3 += formatters.mod10(campo3);
+  campo3 = campo3.substring(0, 5) + "." + campo3.substring(5);
+  campos.push(campo3);
 
-  // DV do código de barras
-  campo = barcodeData.substring(4, 5);
-  campos.push(campo);
+  // Quarto grupo - dígito verificador do código de barras
+  campo4 = barcodeData.substring(4, 5);
+  campos.push(campo4);
 
-  // Fator de vencimento e valor nominal
-  campo = barcodeData.substring(5, 9) + barcodeData.substring(9, 19);
-  campos.push(campo);
+  // Quinto grupo - fator de vencimento e valor nominal do documento
+  campo5 = barcodeData.substring(5, 9) + barcodeData.substring(9, 19);
+  campos.push(campo5);
 
   return campos.join(" ");
 };
