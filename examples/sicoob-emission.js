@@ -6,16 +6,16 @@ var app = express()
 var Boleto = require('../index').Boleto
 
 var boleto = new Boleto({
-  'banco': 'santander',
+  'banco': 'sicoob',
   'data_emissao': new Date(),
-  'data_vencimento': new Date(new Date().getTime() + 5 * 24 * 3600 * 1000),
-  'valor': 1500,
-  'nosso_numero': '1234567',
-  'numero_documento': '123123',
-  'cedente': 'Pagar.me Pagamentos S/A',
-  'cedente_cnpj': '18727053000174',
+  'data_vencimento': new Date("2024-09-19"),
+  'valor': 14.18,
+  'nosso_numero': '54963820',
+  'numero_documento': ' 926196082400',
+  'cedente': 'ACESSO TOTAL COMERCIO INTERNET E SERVICOS EIRELI',
+  'cedente_cnpj': '08056131000100',
   'agencia': '3978',
-  'codigo_cedente': '6404154', // PSK (código da carteira)
+  'codigo_cedente': '30031129341', // PSK (código da carteira)
   'carteira': '102'
 })
 
