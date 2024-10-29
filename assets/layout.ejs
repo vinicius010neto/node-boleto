@@ -416,8 +416,8 @@
             <div class="barcode" />
             <% } else if (barcode_render_engine == 'img') { %>
             <div class="barcode">
-              <% var black = true; %> <% for(var i = 0; i < barcode_data.length;
-              i++) { %> <% var pixelsToDraw = (barcode_data[i] == "0") ? 1 : 3;
+              <% let black = true; %> <% for(let i = 0; i < barcode_data.length;
+              i++) { %> <% let pixelsToDraw = (barcode_data[i] == "0") ? 1 : 3;
               %>
               <img
                 class="barcode-line"
@@ -446,8 +446,8 @@
     </div>
     <script>
       (function () {
-        var onLoadDocumentElement;
-        var onLoadDocumentCopy;
+        let onLoadDocumentElement;
+        let onLoadDocumentCopy;
 
         onDOMReady(function () {
           onLoadDocumentCopy = document.body.children[0].outerHTML;
@@ -467,10 +467,10 @@
         }
 
         function onDOMChange(callback) {
-          var childContent = document.body.children[0];
+          let childContent = document.body.children[0];
 
           if (childContent) {
-            var currentDocumentElement = hashString(childContent.outerHTML);
+            let currentDocumentElement = hashString(childContent.outerHTML);
 
             if (onLoadDocumentElement !== currentDocumentElement) {
               callback();
@@ -485,7 +485,7 @@
         }
 
         function hashString(value) {
-          var hash = 0;
+          let hash = 0;
 
           if (value.length === 0) return hash;
 
