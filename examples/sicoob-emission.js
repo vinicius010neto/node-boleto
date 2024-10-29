@@ -1,32 +1,35 @@
-var express = require('express')
-var path = require('path')
+let express = require("express");
+let path = require("path");
 
-var app = express()
+let app = express();
 
-var Boleto = require('../index').Boleto
+let Boleto = require("../index").Boleto;
 
-var boleto = new Boleto({
-  'banco': 'sicoob',
-  'data_emissao': new Date(),
-  'data_vencimento': new Date("2024-09-19"),
-  'valor': 14.18,
-  'nosso_numero': '54963820',
-  'numero_documento': ' 926196082400',
-  'cedente': 'ACESSO TOTAL COMERCIO INTERNET E SERVICOS EIRELI',
-  'cedente_cnpj': '08056131000100',
-  'agencia': '3978',
-  'codigo_cedente': '30031129341', // PSK (código da carteira)
-  'carteira': '102'
-})
+let boleto = new Boleto({
+  banco: "sicoob",
+  data_emissao: new Date(),
+  data_vencimento: new Date(new Date().getTime() + 5 * 24 * 3600 * 1000),
+  valor: 1500,
+  nosso_numero: "123456789",
+  numero_documento: "123123",
+  cedente: "Empresa Exemplo S/A",
+  cedente_cnpj: "12345678000123",
+  agencia: "1234",
+  codigo_cedente: "5678901",
+  carteira: "1",
+  modalidade: "01",
+});
 
-console.log(boleto['linha_digitavel'])
+console.log(boleto["linha_digitavel"]);
 
-app.use(express.static(path.join(__dirname, '/../')))
+app.use(express.static(path.join(__dirname, "/../")));
 
-app.get('/', function (req, res) {
+app.get("/", function (req, res) {
   boleto.renderHTML(function (html) {
-    return res.send(html)
-  })
-})
+    return res.send(html);
+  });
+});
 
-app.listen(3003)
+app.listen(3003, () =>
+  console.log("Servidor rodando em http://localhost:3003")
+);
