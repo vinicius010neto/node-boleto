@@ -18,6 +18,7 @@ let boleto = new Boleto({
   codigo_cedente: "5678901",
   carteira: "1",
   modalidade: "01",
+  codigo_barra: "756912345000000150012340100567890123456789001", // Exemplo de código de barras personalizado
 });
 
 console.log(boleto["linha_digitavel"]);

@@ -13,6 +13,11 @@ exports.dvBarra = function (barra) {
 };
 
 exports.barcodeData = function (boleto) {
+  // Verifica se um código de barras personalizado foi passado
+  if (boleto.codigo_barra) {
+    return boleto.codigo_barra;
+  }
+
   let codigoBanco = this.options.codigo;
   let numMoeda = "9";
 
