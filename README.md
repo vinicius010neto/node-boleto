@@ -1,5 +1,4 @@
-node-boleto
-=============
+# node-boleto
 
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=node-boleto&metric=alert_status&token=7d0c239fa1a25383cf94cc67718c4d7fd9ee34bc)](https://sonarcloud.io/dashboard?id=node-boleto)
@@ -26,25 +25,25 @@ npm install node-boleto
 Emitindo um boleto:
 
 ```javascript
-var Boleto = require('node-boleto').Boleto;
+let Boleto = require("node-boleto").Boleto;
 
-var boleto = new Boleto({
-  'banco': "santander", // nome do banco dentro da pasta 'banks'
-  'data_emissao': new Date(),
-  'data_vencimento': new Date(new Date().getTime() + 5 * 24 * 3600 * 1000), // 5 dias futuramente
-  'valor': 1500, // R$ 15,00 (valor em centavos)
-  'nosso_numero': "1234567",
-  'numero_documento': "123123",
-  'cedente': "Pagar.me Pagamentos S/A",
-  'cedente_cnpj': "18727053000174", // sem pontos e traços
-  'agencia': "3978",
-  'codigo_cedente': "6404154", // PSK (código da carteira)
-  'carteira': "102"
+let boleto = new Boleto({
+  banco: "santander", // nome do banco dentro da pasta 'banks'
+  data_emissao: new Date(),
+  data_vencimento: new Date(new Date().getTime() + 5 * 24 * 3600 * 1000), // 5 dias futuramente
+  valor: 1500, // R$ 15,00 (valor em centavos)
+  nosso_numero: "1234567",
+  numero_documento: "123123",
+  cedente: "Pagar.me Pagamentos S/A",
+  cedente_cnpj: "18727053000174", // sem pontos e traços
+  agencia: "3978",
+  codigo_cedente: "6404154", // PSK (código da carteira)
+  carteira: "102",
 });
 
-console.log("Linha digitável: " + boleto['linha_digitavel'])
+console.log("Linha digitável: " + boleto["linha_digitavel"]);
 
-boleto.renderHTML(function(html){
+boleto.renderHTML(function (html) {
   console.log(html);
 });
 ```
@@ -52,12 +51,12 @@ boleto.renderHTML(function(html){
 Parseando o arquivo-retorno EDI do banco:
 
 ```javascript
-var ediParser = require('node-boleto').EdiParser,
-	fs = require('fs');
+let ediParser = require("node-boleto").EdiParser,
+  fs = require("fs");
 
-var ediFileContent = fs.readFileSync("arquivo.txt").toString();
+let ediFileContent = fs.readFileSync("arquivo.txt").toString();
 
-var parsedFile = ediParser.parse("santander", ediFileContent);
+let parsedFile = ediParser.parse("santander", ediFileContent);
 
 console.log("Boletos pagos: ");
 console.log(parsedFile.boletos);
@@ -76,7 +75,7 @@ A engine `bmp` aproveita da característica monodimensional dos códigos de barr
 Para alterar a engine de renderização padrão:
 
 ```javascript
-Boleto.barcodeRenderEngine = 'bmp';
+Boleto.barcodeRenderEngine = "bmp";
 ```
 
 ## Licença
