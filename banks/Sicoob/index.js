@@ -60,32 +60,26 @@ exports.linhaDigitavel = function (barcodeData) {
 
   // Primeiro grupo
   campo1 =
-    barcodeData.substring(0, 3) +
-    barcodeData.substring(3, 4) +
-    barcodeData.substring(19, 20) +
-    barcodeData.substring(20, 24);
-  campo1 += formatters.mod10(campo1);
+    barcodeData.substring(0, 10);
   campo1 = campo1.substring(0, 5) + "." + campo1.substring(5);
   campos.push(campo1);
 
   // Segundo grupo
-  campo2 = barcodeData.substring(24, 34);
-  campo2 += formatters.mod10(campo2);
+  campo2 = barcodeData.substring(10, 21);
   campo2 = campo2.substring(0, 5) + "." + campo2.substring(5);
   campos.push(campo2);
 
   // Terceiro grupo
-  campo3 = barcodeData.substring(34, 44);
-  campo3 += formatters.mod10(campo3);
+  campo3 = barcodeData.substring(21, 32);
   campo3 = campo3.substring(0, 5) + "." + campo3.substring(5);
   campos.push(campo3);
 
   // Quarto grupo - dígito verificador do código de barras
-  campo4 = barcodeData.substring(4, 5);
+  campo4 = barcodeData.substring(32, 33);
   campos.push(campo4);
 
   // Quinto grupo - fator de vencimento e valor nominal do documento
-  campo5 = barcodeData.substring(5, 9) + barcodeData.substring(9, 19);
+  campo5 = barcodeData.substring(33);
   campos.push(campo5);
 
   return campos.join(" ");
